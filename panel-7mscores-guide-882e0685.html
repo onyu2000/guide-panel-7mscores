@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7m比分 - 实时赛事资讯平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #faf7f2;
+            font-family: 'Segoe UI', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+            color: #2e2e2e;
+            line-height: 1.7;
+            padding: 0 1.2rem;
+        }
+
+        .page-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.8rem 0 4rem;
+        }
+
+        /* Hero 区 */
+        .hero {
+            background: #fffbf5;
+            border-radius: 36px 36px 36px 36px;
+            padding: 3.2rem 2.8rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.04);
+            margin-bottom: 3rem;
+            border: 1px solid #efe6da;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1f1f1f;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: #f1e5d6;
+            padding: 0 0.3rem 0.1rem;
+            border-radius: 8px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #4a4a4a;
+            max-width: 80%;
+            margin-bottom: 2rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #e7ddd0;
+            color: #2d2d2d;
+            padding: 0.5rem 1.4rem;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        /* 两个卡片区——优势 + 说明 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .card {
+            background: #fffffffc;
+            border-radius: 28px;
+            padding: 2.4rem 2.6rem;
+            border: 1px solid #ece3d8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h2 {
+            font-size: 1.7rem;
+            font-weight: 470;
+            color: #1f1f1f;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #cbb7a5;
+            padding-left: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 0;
+        }
+
+        .card li {
+            width: 100%;
+            padding: 0.3rem 0;
+            font-size: 1.05rem;
+            color: #383838;
+        }
+
+        .card li::before {
+            content: "— ";
+            color: #b8a48e;
+            font-weight: 300;
+        }
+
+        .card p {
+            font-size: 1.05rem;
+            color: #3e3e3e;
+            margin-top: 0.4rem;
+        }
+
+        .card .inset-note {
+            background: #f8f2ea;
+            border-radius: 20px;
+            padding: 1.5rem 1.8rem;
+            margin: 1.6rem 0 0.4rem;
+            border-left: 4px solid #d4c0ad;
+            font-size: 0.98rem;
+            color: #3c3c3c;
+        }
+
+        /* 引用框 / 提示框 */
+        .callout-box {
+            background: #f5efe7;
+            border-radius: 24px;
+            padding: 2rem 2.4rem;
+            margin: 2rem 0 3.2rem;
+            border: 1px solid #e2d6c7;
+        }
+
+        .callout-box h3 {
+            font-weight: 450;
+            font-size: 1.4rem;
+            color: #1f1f1f;
+            margin-bottom: 0.6rem;
+        }
+
+        .callout-box p {
+            color: #464646;
+        }
+
+        /* FAQ 摘要  — 简洁 */
+        .faq-summary {
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.7rem;
+            font-weight: 470;
+            margin-bottom: 1.6rem;
+            color: #1f1f1f;
+            letter-spacing: -0.01em;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2d6c7;
+            padding: 1.2rem 0;
+        }
+
+        .faq-item strong {
+            font-weight: 500;
+            display: block;
+            font-size: 1.08rem;
+            margin-bottom: 0.3rem;
+            color: #2a2a2a;
+        }
+
+        .faq-item p {
+            color: #4f4f4f;
+            font-size: 0.98rem;
+            margin-left: 0.4rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            border-top: 1px solid #e3d7c9;
+            padding-top: 2rem;
+            margin-top: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            font-size: 0.98rem;
+            color: #5f5f5f;
+        }
+
+        .footer-links a {
+            color: #3f3f3f;
+            text-decoration: none;
+            border-bottom: 1px solid #bfae9b;
+            padding-bottom: 1px;
+            transition: border-color 0.15s;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #6a5a4a;
+        }
+
+        .footer-links .secondary {
+            margin-top: 0.6rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* 响应微调 */
+        @media (max-width: 600px) {
+            .page-wrap {
+                padding: 1.8rem 0 3rem;
+            }
+
+            .hero {
+                padding: 2.2rem 1.6rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                max-width: 100%;
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1.8rem 1.4rem;
+            }
+
+            .card h2 {
+                font-size: 1.4rem;
+            }
+
+            .callout-box {
+                padding: 1.6rem 1.4rem;
+            }
+
+            .faq-summary h2 {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (min-width: 700px) {
+            .hero p {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- HERO 区 -->
+    <section class="hero">
+        <h1>比分之外，<br>还有<span>可信赖的讯息</span></h1>
+        <p>无论你是资深球迷还是偶尔关注赛事动向，一个准确、清晰的比分平台总能节省不少时间。</p>
+        <div class="tagline">站点介绍 · 日常说明</div>
+    </section>
+
+    <!-- 优势 + 说明区 两卡片 -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>为什么选择这里</h2>
+            <ul>
+                <li>实时更新覆盖足球、篮球等主流联赛</li>
+                <li>界面简洁，重点信息一目了然</li>
+                <li>数据源稳定，适合赛前赛后快速查阅</li>
+                <li>无需反复刷新，比赛动态自动呈现</li>
+            </ul>
+            <div class="inset-note">
+                ⚡ 日常使用场景：赛前瞄一眼阵容与走势，中场和朋友聊球时随手确认比分，赛后浏览最终数据——这些场景里，<a href="https://panel-7mscores.com" style="color:#2d2d2d; font-weight:500;">7m比分</a> 都能帮上忙。
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>关于可靠与透明</h2>
+            <p>我们更愿意把实话摆在前面：比分数据难免存在延迟或偶发误差，任何平台都无法做到百分之百实时。但 <a href="https://panel-7mscores.com" style="color:#2d2d2d; font-weight:500;">7m比分</a> 一直致力于减少信息差，从多个来源交叉验证，在合理范围内提供更贴近现场的赛事动态。</p>
+            <p style="margin-top: 1rem;">没有浮夸的承诺，只有日常的打磨。你可以先花几分钟浏览界面，看看信息呈现是否符合自己的习惯。</p>
+        </div>
+    </div>
+
+    <!-- 引用/提示框  偏向场景补充 + 可信说明 -->
+    <div class="callout-box">
+        <h3>一点小提示</h3>
+        <p>如果你同时关注多个联赛，建议把常用比赛页面加入浏览器书签，这样每次打开 <a href="https://panel-7mscores.com" style="color:#2d2d2d; font-weight:500;">7m比分</a> 就能直达最关心的赛事。比分数据仅作为参考，最终结果请以官方或现场公告为准。</p>
+    </div>
+
+    <!-- FAQ 摘要 (三个简短问答) -->
+    <section class="faq-summary">
+        <h2>常见疑问 · 简短回答</h2>
+        <div class="faq-item">
+            <strong>Q: 是否覆盖所有足球联赛？</strong>
+            <p>主流欧洲联赛、亚洲联赛以及部分杯赛都有收录，具体名单可以在顶部导航查看。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q: 比分刷新的间隔大概是多久？</strong>
+            <p>通常每30秒至1分钟自动刷新，但网络环境和赛事热度也会影响更新频率。</p>
+        </div>
+        <div class="faq-item">
+            <strong>Q: 需要注册账号才能使用吗？</strong>
+            <p>完全不需要注册或登录，打开页面即可浏览所有公开信息。</p>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.96rem; color: #606060;">如果你还有其他疑问，可以直接在网站右下角的帮助入口查找更详细的说明。</p>
+    </section>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+        <div>
+            <a href="https://panel-7mscores.com">7m比分</a> — 一个专注于赛事比分的日常工具。
+        </div>
+        <div class="secondary">
+            © 提供信息参考 · 非官方数据源 · 请结合多方判断
+        </div>
+    </footer>
+</div>
+</body>
+</html>
