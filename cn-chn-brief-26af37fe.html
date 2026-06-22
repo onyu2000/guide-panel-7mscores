@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将胡了 · 一目了然</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background: #f6f7f9;
+            color: #1d1f22;
+            line-height: 1.6;
+        }
+
+        /* 导航 */
+        .navbar {
+            background: #1c1e21;
+            padding: 0 5%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            color: #e9ecef;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: #b0b8c4;
+            margin-left: 28px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #f1c40f;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #1e2329 0%, #2c313a 100%);
+            padding: 80px 5% 70px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #f0f3f7;
+            font-weight: 600;
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            color: #cfd7e3;
+            max-width: 680px;
+            margin: 0 auto 24px;
+            font-size: 1.1rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(241, 196, 15, 0.18);
+            color: #f1c40f;
+            padding: 6px 22px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 400;
+        }
+
+        /* 主体浅色区 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 48px 5% 64px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 550;
+            margin-bottom: 28px;
+            border-left: 5px solid #d4a017;
+            padding-left: 16px;
+            color: #212529;
+        }
+
+        .intro-block p {
+            font-size: 1.05rem;
+            color: #2c3038;
+            margin-bottom: 18px;
+        }
+
+        /* 三个场景卡片 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin: 48px 0 56px;
+        }
+
+        .scene-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 28px 20px 24px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+        }
+
+        .scene-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 550;
+            color: #1f242b;
+            display: flex;
+            align-items: center;
+        }
+
+        .scene-card h3 span {
+            display: inline-block;
+            background: #2f3540;
+            color: #f1c40f;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            margin-right: 12px;
+            font-weight: 500;
+        }
+
+        .scene-card p {
+            color: #3d424b;
+            font-size: 0.95rem;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted transparent;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom: 1px solid #b8860b;
+            color: #9a6f0a;
+        }
+
+        /* 常见说明——FAQ风格 */
+        .faq-list {
+            margin-top: 40px;
+        }
+
+        .faq-item {
+            padding: 18px 0;
+            border-bottom: 1px solid #e0e4ea;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 550;
+            color: #1c1f24;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
+
+        .faq-a {
+            color: #3e444e;
+            font-size: 0.98rem;
+            padding-left: 6px;
+        }
+
+        .faq-a a {
+            font-weight: 500;
+        }
+
+        .extra-note {
+            background: #edf0f5;
+            border-radius: 14px;
+            padding: 22px 28px;
+            margin: 44px 0 20px;
+            color: #1f242b;
+        }
+
+        .extra-note strong {
+            color: #2d3038;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #1c1e21;
+            color: #a3abb6;
+            text-align: center;
+            padding: 30px 5%;
+            font-size: 0.88rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .hero h1 { font-size: 1.8rem; }
+            .scene-grid { grid-template-columns: 1fr; gap: 20px; }
+            .navbar { flex-wrap: wrap; height: auto; padding: 12px 5%; }
+            .nav-link { margin-left: 16px; font-size: 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 50px 5% 40px; }
+            .container { padding: 28px 5% 40px; }
+            .faq-item { padding: 14px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <span class="nav-brand">🀄 胡了指南</span>
+    <div>
+        <a href="#intro" class="nav-link">介绍</a>
+        <a href="#scenes" class="nav-link">场景</a>
+        <a href="#faq" class="nav-link">说明</a>
+    </div>
+</nav>
+
+<!-- 深色头图 -->
+<section class="hero">
+    <h1>一眼认出「麻将胡了」</h1>
+    <p>想快速搞懂这个网站是做什么的？这里没有绕弯子——它围绕麻将爱好者关心的规则、玩法与娱乐信息整理而成。</p>
+    <span class="tagline">休闲 · 实用 · 轻导航</span>
+</section>
+
+<!-- 正文区 -->
+<div class="container">
+
+    <!-- 核心介绍 -->
+    <div id="intro" class="intro-block">
+        <h2 class="section-title">一句话讲清网站定位</h2>
+        <p>很多人第一次看到 <a href="https://cn-chn-mahjong.com">麻将胡了</a> 这个名字，第一反应是：这是个游戏？还是个社区？其实它更像一个主题信息站——把与麻将胡牌相关的基础知识、常见牌型、术语和娱乐参考整合在一起，让你不用东翻西找。无论是新手还是老玩家，都可以在这里快速扫一眼核心内容，省去不少搜索时间。</p>
+        <p>整个页面没有复杂的注册流程，也没有过度包装。你看到的就是实打实的麻将相关内容，不掺杂多余推广。适合想安静了解麻将规则、胡牌逻辑或纯粹出于好奇的朋友。</p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div id="scenes">
+        <h2 class="section-title">哪些情况下你会用到这个网站？</h2>
+        <div class="scene-grid">
+            <div class="scene-card">
+                <h3><span>①</span>刚接触麻将的新手</h3>
+                <p>还分不清“碰杠吃”和胡牌的关系？网站整理了最基础的胡牌条件与番种解释，帮你快速建立概念框架，不会一上来就看懵。</p>
+            </div>
+            <div class="scene-card">
+                <h3><span>②</span>想复习牌型的老玩家</h3>
+                <p>即便打过多年麻将，偶尔也会忘掉某个特殊牌型的具体要求。在这里可以按分类检索，找到对应的胡牌模式说明，方便你临时回顾。</p>
+            </div>
+            <div class="scene-card">
+                <h3><span>③</span>纯粹好奇的旁观者</h3>
+                <p>即使不上桌打牌，光是了解“十三幺”、“七对”这些名字由来的过程也很有趣。网站把那些听起来很酷的麻将术语用平实的话解释清楚。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见说明（FAQ摘要） -->
+    <div id="faq">
+        <h2 class="section-title">你可能想先知道这些</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-q">❓ 这个网站需要付费或注册吗？</div>
+                <div class="faq-a">完全免费开放，无需注册或登录。所有介绍内容都直接展示在页面上，你只管浏览即可。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">❓ 内容是不是只针对某一种麻将规则？</div>
+                <div class="faq-a">主要参考大众常见的国标麻将和部分地方性玩法，但不深入某一特定流派。基本原则通用，具体细节建议以当地规则为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">❓ 网站上会教“作弊”或“必胜技巧”吗？</div>
+                <div class="faq-a">不会。这里只分享正规的规则解读、牌型科普和娱乐信息，不提倡任何违反公平竞技的行为。</div>
+            </div>
+        </div>
+
+        <div class="extra-note">
+            <strong>📌 一点说明：</strong> 如果你恰好想找一个能快速查阅麻将胡牌相关信息的页面，不妨把 <a href="https://cn-chn-mahjong.com">麻将胡了</a> 记住。它不算大而全的百科，但胜在直接、清爽，没有广告干扰。未来也会持续补充更细致的分类内容。
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <p>© 2025 麻将胡了 · 轻导航页面</p>
+    <p style="margin-top: 6px; font-size: 0.8rem;">旨在提供清晰、真实的麻将信息参考</p>
+</footer>
+
+</body>
+</html>
